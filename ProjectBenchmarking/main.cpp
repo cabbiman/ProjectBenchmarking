@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
 
     int numRow = 10;
     int numCol = 10;
-    int numFrom = 0;
+    int numFrom = 10;
     int numTo = 20;
     
     int **matrix = new int*[numRow];
@@ -37,15 +37,17 @@ int main(int argc, char** argv) {
 
 void fillArray(int numFrom,int numTo,int numRow,int numCol,int **matrix)
 {
-    //naplnenie pola
+    //naplnenie pola tak, aby matica bola symetricka
     for(int i=0;i<numRow;i++)
     {
         for(int j=0;j<numCol;j++)
         {
-            if(i == j)
-                matrix[i][j] = 0;
-            else
-                matrix[i][j] = numFrom + rand()%(numTo - numFrom + 1);             
+            if(i == j)              //na diagonale same 0
+                matrix[i][j] = 0;  
+            else if(i < j)         //ak je cislo nad diagonalou 
+                matrix[i][j] = numFrom + rand()%(numTo - numFrom + 1);
+            else                  //ak je cislo pod diagonalou
+                matrix[i][j] = matrix[j][i];
         }
     }
 }
@@ -61,6 +63,14 @@ void printArray(int numRow,int numCol,int **matrix)
         }
         cout << endl;
     }
-}
+} 
 
+void deallocateArray(int numRow,int **matrix)
+{
+    for(int i=0;i<numRow;i++)
+    {
+        delete [] matrix[i];
+    }
+    delete [] matrix;
+}
 
