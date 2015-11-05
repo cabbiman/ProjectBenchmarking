@@ -1,6 +1,6 @@
 /* 
  * File:   main.cpp
- * Author: Samo
+ * Author: Samo,Cabbi
  *
  * Created on 4. listopadu 2015, 20:24
  */
